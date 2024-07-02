@@ -96,9 +96,45 @@ rápidamente. Utiliza prompt para ingresar los datos.
  */
 
 
+//creacion de funcion para comparar la distancia mas cercana
+function determinarEnemigoCercano3 (enemigoA, enemigoB) {
+    if (enemigoA.dist < enemigoB.dist) {
+        console.log(`El enemigo mas cercano es: ${enemigoA.enemy}`);
+    } else {
+        console.log(`El enemigo mas cercano es: ${enemigoB.enemy}`);
+    }
+};
 
+//ejecutar primera ronda
+//creacion de objetos enemigoA y enemigoB, 1a ronda
+let enemigoA = {
+    enemy: prompt('Ingrese nombre de enemigo 1 (ronda1):'),
+    dist: prompt('Ingrese distancia del enemigo 1 (ronda1):')
+};
+let enemigoB = {
+    enemy: prompt('Ingrese nombre de enemigo 2 (ronda1):'),
+    dist: prompt('Ingrese distancia del enemigo 2 (ronda1):')
+};
 
 console.log("********** Problema III **********");
+console.log('Ronda 1');
+determinarEnemigoCercano3 (enemigoA, enemigoB);
+console.log(" ");
+
+
+//ejecutar segunda ronda
+//creacion de objetos enemigoA y enemigoB, 1a ronda
+enemigoA = {
+    enemy: prompt('Ingrese nombre de enemigo 1 (ronda2):'),
+    dist: prompt('Ingrese distancia del enemigo 1 (ronda2):')
+};
+enemigoB = {
+    enemy: prompt('Ingrese nombre de enemigo 2 (ronda2):'),
+    dist: prompt('Ingrese distancia del enemigo 2 (ronda2):')
+};
+
+console.log('Ronda 2');
+determinarEnemigoCercano3 (enemigoA, enemigoB);
 console.log(" ");
 console.log("========================================================");
 
@@ -126,15 +162,15 @@ cercano.
  */
 
     function determinarEnemigoCercano4 (enemy1, dist1, priority1, enemy2, dist2, priority2){
-        switch (true) {
-            case priority1 === priority2:
-                if(dist1 < dist2) {
+        switch (true) {//usando el metodo switch
+            case priority1 === priority2: //como proceder si en caso la prioridad es igual
+                if(dist1 < dist2) {//si la prioridad es igual comparara las distancias
                     console.log(`El enemigo con mayor prioridad y menor distancia es: ${enemy1}`);
                 } else {
                     console.log(`El enemigo con mayor prioridad y menor distancia es: ${enemy2}`);
                 }
                 break;
-            case priority1 < priority2:
+            case priority1 < priority2: //el de mayor prioridad sera el primero
                 console.log(`El enemigo con mayor prioridad y menor distancia es: ${enemy2}`);
                 break;
             default:
@@ -150,8 +186,67 @@ console.log(" ");
 console.log("========================================================");
 
 //------------------------------------------------------------------------------------------
+/**
+ * Problema V (30 puntos)
+Desarrolla un programa de simulación de radar que lea
+continuamente el nombre, la distancia, la velocidad y la prioridad de
+ataque de dos enemigos. El programa debe seleccionar el enemigo con
+mayor prioridad para atacar. Si ambos tienen la misma prioridad,
+selecciona el más cercano. Si las distancias son iguales, selecciona el
+enemigo con mayor velocidad.
 
+    Entrada: 
+    enemy1: "Enemy1" 
+    dist1: 30
+    priority1: 2
+    speed1: 10
+    ----
+    enemy2: "Enemy2"
+    dist2: 30
+    priority2: 2
+    speed2: 20
+
+    Salida:
+    Enemy2
+ */
+
+    //en este ejercicio crearemos 2 objetos enemigo con sus atributos
+const enemigo1 = {
+    enemy: "Enemy1",
+    dist: 30,
+    priority: 2,
+    speed: 10
+};
+
+const enemigo2 = {
+    enemy: "Enemy2",
+    dist: 30,
+    priority: 2,
+    speed: 20 
+}
+
+// creacion de la funcion que hara las comparaciones de los atributos para determinar a quien se dispara primero
+function determinarEnemigoPrioridad (enemigo1, enemigo2) {
+    if (enemigo1.priority > enemigo2.priority) { //if para determinar prioridad
+        console.log(`El enemigo a atacar primero es: ${enemigo1.enemy}`);
+    } else if (enemigo1.priority < enemigo2.priority) {
+        console.log(`El enemigo a atacar primero es: ${enemigo2.enemy}`);
+    } else {
+        if (enemigo1.dist < enemigo2.dist) { // if para determinar distancia mas corta
+            console.log(`El enemigo a atacar primero es: ${enemigo1.enemy}`);
+        } else if (enemigo1.dist > enemigo2.dist) {
+            console.log(`El enemigo a atacar primero es: ${enemigo2.enemy}`);
+        } else {
+            if (enemigo1.speed > enemigo2.speed) {  // if para determinar velocidad
+                console.log(`El enemigo a atacar primero es: ${enemigo1.enemy}`);
+            } else {
+                console.log(`El enemigo a atacar primero es: ${enemigo2.enemy}`);
+            }
+        }
+    }
+};
 
 console.log("********** Problema V **********");
+determinarEnemigoPrioridad (enemigo1, enemigo2);
 console.log(" ");
 console.log("========================================================");
